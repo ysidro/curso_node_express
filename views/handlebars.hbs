@@ -1,0 +1,18 @@
+<h1>{{appName}}</h1>
+
+{{#if users.length}}
+{{#each users}}
+<p>{{id}} - {{name}}
+    {{/each}}
+    {{else}}
+    <p>No hay usuario..</p>
+    {{/if}}
+
+
+    {{#unless users}}
+    <p>No hay usuario..</p>
+    {{/unless}}
+
+    {{>partials}}
+
+    {{log users}}

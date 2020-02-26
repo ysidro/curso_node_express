@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="col-12">
+      {{#if errors.length}}
+        <div class="alert alert-danger" role="alert">
+          {{#each errors}}
+            <p>{{this}}</p>
+          {{/each}}
+        </div>
+      {{/if}}
+
+      {{#if flash}}
+        <div class="alert alert-success" role="alert">
+            <p>{{flash}}</p>
+        </div>
+      {{/if}}
+
+    </div>
+    <form id="register-form" novalidate action="/form/register" method="post" role="form">
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="username">Name</label>
+      <input type="text" class="form-control" id="username" name="username" value="{{post.username}}">
+    </div>
+     <div class="form-group col-md-12">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" name="email" value="{{post.email}}">
+    </div>
+    <div class="form-group col-md-12">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" name="password" >
+    </div>
+  </div>
+
+  </div>
+  <div class="form-group">
+
+  </div>
+  <div class="flex">
+       <button type="submit" class="btn btn-success text-center">Register now</button>
+  </div>
+
+</form>
+
+</div>
+
