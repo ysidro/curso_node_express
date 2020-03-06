@@ -5,7 +5,7 @@ var userModel = require('../models/users');
 
 
 
-router.get('/all',(req,res,next) =>
+router.get('/',(req,res,next) =>
            {
 
     userModel.fetchAll((error,users) => {

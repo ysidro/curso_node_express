@@ -56,6 +56,11 @@ app.use(fash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use((req,res,next)=>{
+  res.locals.user = req.user;
+  next();
+})
+
 app.use('/components', express.static(`${__dirname}/public/components`));
 
 

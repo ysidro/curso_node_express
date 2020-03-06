@@ -10,12 +10,12 @@ passport.serializeUser((user,done)=>{
 
 
 passport.deserializeUser((id,done)=>{
-    User.findByid(id,(err,user)=>{
-        done(err.user);
+    User.findById(id,(err,user)=>{
+        done(err,user[0]);
     });
 });
 
-router.get('/login',(req,res,next)=>{
+router.get('/',(req,res,next)=>{
     res.render('login',{
             title:'Login Passpot y Mysql',
             message:req.flash('error'),
@@ -25,7 +25,11 @@ router.get('/login',(req,res,next)=>{
 
 passport.use(new localStrategy(
         (username, password,done) =>{
+
+
             User.findOne(username,password,(error,user)=>{
+
+
                 if(error){
                     return done(error);
                 }
@@ -41,13 +45,18 @@ passport.use(new localStrategy(
 
 router.post('/login',
             passport.authenticate('local',{
-                failureRedirect:'/user-login/login',
+                failureRedirect:'/user-login/',
                 failureFlash:true
             }),
             (req,res) => {
-                res.json(req.user);
+                res.redirect(`/user-login/user/${req.user.id}`);
             }
 )
 
+router.get('/user/:id', (req,res,next) => {
 
+    res.render('user',{
+        title:`Bienvenido ${req.user.username}`
+    });
+})
 module.exports = router;

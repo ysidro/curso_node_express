@@ -35,6 +35,7 @@ router.post('/register',
                 .is(/^[0-9]+$/, 'El %s sólo puede contener letras')
             ),
             (req,res,next) => {
+
                     if(!req.form.isValid){
                         res.render('form-validation',
                                    {title: "Validacion de Formularios",
@@ -47,6 +48,7 @@ router.post('/register',
                             username: req.body.username,
                             password: bcrypt.hashSync(req.body.password),
                             email:req.body.email
+
                         };
 
                         User.insert(user,(error,inserId) => {

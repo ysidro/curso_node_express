@@ -63,7 +63,7 @@ User.findById = (id,callback) => {
 User.findOne = (username,password,callback) =>{
     if(conn){
 
-        conn.query(`SELECT * FROM users WHERE username = ${conn.escape(username)} AND password = ${conn.escape(password)}`,
+        conn.query(`SELECT * FROM users WHERE username = ${conn.escape(username)}`,
             (error,rows) => {
 
                 if(error){
@@ -73,7 +73,9 @@ User.findOne = (username,password,callback) =>{
                 if(rows.length === 0){
                         return callback(null,null);
                 }
+
                 var check = bcrypt.compareSync(password,rows[0].password);
+
                 if(check){
                      return callback(null,rows[0]);
                  }else{
@@ -83,5 +85,7 @@ User.findOne = (username,password,callback) =>{
         )
     }
 };
+
+
 
 module.exports = User;
